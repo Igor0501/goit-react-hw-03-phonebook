@@ -26,7 +26,7 @@ export default class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.contact !== this.state.contacts) {
+    if (prevState.contacts !== this.state.contacts) {
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
     }
   }
@@ -38,7 +38,9 @@ export default class App extends Component {
         const newContactsObject = [{ id, name, number }, ...prevState.contacts];
         return { contacts: newContactsObject };
       });
-    }
+    } else {
+    alert('This name already exists. Please enter a unique name for the contact');
+  }
   };
 
   onFilterChange = e => {
